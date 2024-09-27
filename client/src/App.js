@@ -6,41 +6,37 @@ function App() {
 
     const handleImageChange = (event) => {
         if (event.target.files && event.target.files[0]) {
-            setSelectedImage(URL.createObjectURL(event.target.files[0]));
+            setSelectedImage(URL.createObjectURL(event.files[0]));
         }
     };
 
     return (
         <div className="bg-nestadarkblue min-h-screen font-sans">
+            <header className="bg-nestadarkblue text-white p-4 text-center">
+                <h1 className="text-6xl font-bold mb-4">
+                    FoodSwap
+                </h1>
+                <p className="text-lg">
+                    Upload a picture of your food to get started.
+                </p>
+                <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="hidden"
+                    id="imageInput"
+                />
+                <label htmlFor="imageInput">
+                    <button className="mt-6 bg-white text-gray-800 font-bold py-3 px-6 rounded-lg shadow-md hover:bg-gray-200">
+                        Upload Image
+                    </button>
+                </label>
+            </header>
             <div className="flex flex-col min-h-screen">
-                <div className="flex flex-grow">
-                    {!selectedImage && (
-                        <div className="flex flex-col justify-center items-center text-white">
-                            <h1 className="text-6xl font-bold mb-4">
-                                FoodSwap
-                            </h1>
-                            <p className="text-lg">
-                                Upload a picture of your food to get started.
-                            </p>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={handleImageChange}
-                                className="hidden"
-                                id="imageInput"
-                            />
-                            <label htmlFor="imageInput">
-                                <button className="mt-6 bg-white text-gray-800 font-bold py-3 px-6 rounded-lg shadow-md hover:bg-gray-200">
-                                    Upload Image
-                                </button>
-                            </label>
-                        </div>
-                    )}
-                </div>
                 <div className="flex flex-grow">
                     {(selectedImage || true) && (
                         <div className="flex flex-row flex-grow">
-                            <div className="flex flex-col justify-between bg-white bg-opacity-75 p-4 rounded-lg shadow-md">
+                            <div className="flex flex-col justify-between bg-white bg-opacity-75 p-4 rounded-lg shadow-md w-1/3">
                                 <h2 className="text-2xl font-bold mb-2">
                                     Analysis & Suggestions
                                 </h2>
