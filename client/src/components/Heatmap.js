@@ -1,23 +1,24 @@
-import React from 'react';                                                         
- import Heatmap from 'react-heatmap-grid';                                          
-                                                                                    
- const HeatmapComponent = ({ data }) => {                                           
-   return (                                                                         
-     <div className="heatmap-container">                                            
-       <h3 className="heatmap-title">Daily Swaps</h3>                               
-       <div className="heatmap">                                                    
-         <Heatmap                                                                   
-           data={data.map(item => item.swaps)}                                      
-           width={600}                                                              
-           height={400}                                                             
-           cellWidth={50}                                                           
-           cellHeight={50}                                                          
-           colors={['#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6 
- '#2171b5', '#08519c', '#08306b']}                                                  
-           stroke="#fff"                                                            
-           strokeWidth={1}                                                          
-         />                                                                         
-       </div>                                                                       
-     </div>                                                                         
-   );                                                                               
- };  
+import React from 'react';
+import 'react-calendar-heatmap/dist/styles.css';
+import CalendarHeatmap from 'react-calendar-heatmap';
+
+const HeatmapComponent = ({ data }) => {
+    return (
+        <div className="heatmap-container">
+            <div className="heatmap">
+                <CalendarHeatmap
+                    startDate={new Date('2024-01-01')}
+                    endDate={new Date('2025-01-01')}
+                    values={[
+                        { date: '2016-01-01', count: 12 },
+                        { date: '2016-01-22', count: 122 },
+                        { date: '2016-01-30', count: 38 },
+                        // ...and so on
+                    ]}
+                />
+            </div>
+        </div>
+    );
+};
+
+export default HeatmapComponent;
