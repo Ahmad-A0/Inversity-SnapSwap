@@ -41,7 +41,7 @@ function App() {
                 <div className='flex flex-row'>
                     <div className="flex flex-col justify-between">
                         {(selectedImage || true) && (
-                            <div className=" bg-white bg-opacity-75 p-4 rounded-lg shadow-md w-1/4">
+                            <div className=" bg-white bg-opacity-75 p-4 rounded-lg shadow-md ">
                                 <h2 className="text-2xl font-bold mb-2">
                                     Analysis & Suggestions
                                 </h2>
