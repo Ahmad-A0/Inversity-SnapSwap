@@ -160,16 +160,7 @@ function App() {
                     transition={{ duration: 0.5, delay: 0.6 }}
                     className="mt-12"
                 >
-                    <Masonry
-                        breakpointCols={{
-                            default: 4,
-                            1100: 3,
-                            700: 2,
-                            500: 1,
-                        }}
-                        className="my-masonry-grid"
-                        columnClassName="my-masonry-grid_column"
-                    >
+                    <div className="ImageGrid">
                         {[1, 2, 3, 4, 5, 6].map((i) => (
                             <div
                                 key={i}
@@ -183,7 +174,7 @@ function App() {
                                 />
                             </div>
                         ))}
-                    </Masonry>
+                    </div>
                 </motion.div>
 
                 <motion.div
