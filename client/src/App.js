@@ -163,7 +163,7 @@ function App() {
                         {[1, 2, 3, 4, 5, 6].map((i) => (
                             <div
                                 key={i}
-                                className="bg-gray-800 rounded-lg overflow-hidden shadow-md w-64"
+                                className="bg-gray-800 rounded-lg overflow-hidden shadow-md w-64 cursor-pointer hover:scale-110 transition-transform duration-300"
                             >
                                 <img
                                     src={placeholderImage}
