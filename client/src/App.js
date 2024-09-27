@@ -118,7 +118,7 @@ shadow-md relative group">
             <img
               src={placeholderImage}
               alt={`Placeholder ${i}`}
-              className="w-full h-full object-cover transition-transform 
+              className="w-full h-full object-contain transition-transform 
 duration-300 group-hover:scale-110"
             />
             <div className="absolute inset-0 bg-black bg-opacity-75 text-white p-4 
