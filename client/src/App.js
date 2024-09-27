@@ -11,11 +11,39 @@ function App() {
     };
 
     return (
-        <div className="bg-nestadarkblue min-h-screen font-sans flex flex-col">
-            <div className="flex flex-row flex-grow">
-                <div className="flex flex-col justify-center p-8">
+        <div className="bg-nestadarkblue min-h-screen font-sans">
+            <div className="relative">
+                <div className="absolute inset-0 flex items-center justify-center">
+                    {!selectedImage && (
+                        <div className="text-white text-center">
+                            <h1 className="text-6xl font-bold mb-4">
+                                FoodSwap
+                            </h1>
+                            <p className="text-lg">
+                                Upload a picture of your food to get started.
+                            </p>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageChange}
+                                className="hidden"
+                                id="imageInput"
+                            />
+                            <label htmlFor="imageInput">
+                                <button className="mt-6 bg-white text-gray-800 font-bold py-3 px-6 rounded-lg shadow-md hover:bg-gray-200">
+                                    Upload Image
+                                </button>
+                            </label>
+                        </div>
+                    )}
+                </div>
+
+                <div className='flex flex-row'>
+
+
+                    <div>
                     {(selectedImage || true) && (
-                        <div className="bg-white bg-opacity-75 p-4 rounded-lg shadow-md w-1/4">
+                        <div className=" bg-white bg-opacity-75 p-4 rounded-lg shadow-md w-1/4">
                             <h2 className="text-2xl font-bold mb-2">
                                 Analysis & Suggestions
                             </h2>
@@ -40,42 +68,18 @@ function App() {
                                     chicken for reduced fat intake.
                                 </li>
                                 <li>
-                                    Add a side of steamed vegetables for
-                                    extra vitamins.
+                                    Add a side of steamed vegetables for extra
+                                    vitamins.
                                 </li>
                             </ul>
                         </div>
                     )}
-                </div>
-                <div className="flex flex-grow relative">
-                    {!selectedImage && (
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="text-white text-center">
-                                <h1 className="text-6xl font-bold mb-4">
-                                    FoodSwap
-                                </h1>
-                                <p className="text-lg">
-                                    Upload a picture of your food to get started.
-                                </p>
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={handleImageChange}
-                                    className="hidden"
-                                    id="imageInput"
-                                />
-                                <label htmlFor="imageInput">
-                                    <button className="mt-6 bg-white text-gray-800 font-bold py-3 px-6 rounded-lg shadow-md hover:bg-gray-200">
-                                        Upload Image
-                                    </button>
-                                </label>
-                            </div>
-                        </div>
-                    )}
-                    <img
-                        src={selectedImage || placeholderImage}
-                        className="object-cover h-full rounded-br-lg"
-                    ></img>
+
+                    </div>
+
+                    <div>
+                    <img src={placeholderImage} className=""></img>
+                    </div>
                 </div>
             </div>
         </div>
