@@ -39,46 +39,42 @@ function App() {
                 </div>
 
                 <div className='flex flex-row'>
-
-
-                    <div>
-                    {(selectedImage || true) && (
-                        <div className=" bg-white bg-opacity-75 p-4 rounded-lg shadow-md w-1/4">
-                            <h2 className="text-2xl font-bold mb-2">
-                                Analysis & Suggestions
-                            </h2>
-                            {/* Dummy analysis and suggestions */}
-                            <p>Estimated Calories: 550</p>
-                            <p>Macronutrients:</p>
-                            <ul className="list-disc pl-5">
-                                <li>Protein: 30g</li>
-                                <li>Carbohydrates: 60g</li>
-                                <li>Fat: 25g</li>
-                            </ul>
-                            <h3 className="text-xl font-bold mt-4">
-                                Suggestions:
-                            </h3>
-                            <ul className="list-disc pl-5">
-                                <li>
-                                    Swap white rice for brown rice for added
-                                    fiber and nutrients.
-                                </li>
-                                <li>
-                                    Consider a smaller portion of the fried
-                                    chicken for reduced fat intake.
-                                </li>
-                                <li>
-                                    Add a side of steamed vegetables for extra
-                                    vitamins.
-                                </li>
-                            </ul>
-                        </div>
-                    )}
-
+                    <div className="flex flex-col justify-between">
+                        {(selectedImage || true) && (
+                            <div className=" bg-white bg-opacity-75 p-4 rounded-lg shadow-md w-1/4">
+                                <h2 className="text-2xl font-bold mb-2">
+                                    Analysis & Suggestions
+                                </h2>
+                                {/* Dummy analysis and suggestions */}
+                                <p>Estimated Calories: 550</p>
+                                <p>Macronutrients:</p>
+                                <ul className="list-disc pl-5">
+                                    <li>Protein: 30g</li>
+                                    <li>Carbohydrates: 60g</li>
+                                    <li>Fat: 25g</li>
+                                </ul>
+                                <h3 className="text-xl font-bold mt-4">
+                                    Suggestions:
+                                </h3>
+                                <ul className="list-disc pl-5">
+                                    <li>
+                                        Swap white rice for brown rice for added
+                                        fiber and nutrients.
+                                    </li>
+                                    <li>
+                                        Consider a smaller portion of the fried
+                                        chicken for reduced fat intake.
+                                    </li>
+                                    <li>
+                                        Add a side of steamed vegetables for extra
+                                        vitamins.
+                                    </li>
+                                </ul>
+                            </div>
+                        )}
                     </div>
-
-                    <div>
-                    <img src={placeholderImage} className=""></img>
+                    <div className="flex-grow relative">
+                        <img src={placeholderImage} className="absolute bottom-0 right-0 h-full rounded-lg"></img>
                     </div>
                 </div>
             </div>
