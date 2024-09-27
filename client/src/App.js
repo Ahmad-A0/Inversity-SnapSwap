@@ -123,7 +123,7 @@ function App() {
                                 <img
                                     src={selectedImage}
                                     alt="Meal"
-                                    className="w-full h-full object-cover rounded-lg cursor-pointer hover:scale-110 transition duration-300"
+                                    className="w-full h-full object-cover rounded-lg"
                                 />
                             ) : (
                                 <div className="absolute inset-0 flex items-center justify-center bg-gray-700">
@@ -163,7 +163,7 @@ function App() {
                         {[1, 2, 3, 4, 5, 6].map((i) => (
                             <div
                                 key={i}
-                                className="w-64 h-48 bg-gray-800 rounded-lg overflow-hidden shadow-md cursor-pointer hover:scale-110 transition duration-300"
+                                className="w-64 h-48 bg-gray-800 rounded-lg overflow-hidden shadow-md"
                             >
                                 <img
                                     src={placeholderImage}
