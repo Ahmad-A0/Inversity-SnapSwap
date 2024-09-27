@@ -265,13 +265,13 @@ function App() {
                     </motion.div>
                 </div>
 
+                <ImageCarousel /> 
+
                 <ProgressCharts 
                     caloriesSavedData={caloriesSavedData} 
                     macroBreakdownData={macroBreakdownData} 
                     colors={COLORS} 
                 />
-
-                <ImageCarousel /> 
             </main>
         </div>
     );
