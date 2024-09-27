@@ -111,19 +111,25 @@ const ImageCarousel = () => {
       <h3 className="text-3xl font-serif text-center mb-8 text-yellow-300">
         Related Meals
       </h3>
-      <div className="flex overflow-x-auto gap-4"> 
-        <div className="flex"> 
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div key={i} className="w-64 h-48 bg-gray-800 rounded-lg overflow-hidden shadow-md">
-              <img
-                src={placeholderImage}
-                alt={`Placeholder ${i}`}
-                className="w-full h-full object-cover"
-              />
+      <div className="flex overflow-x-auto gap-8"> 
+        {[1, 2, 3, 4, 5, 6].map((i) => (
+          <div key={i} className="w-64 h-48 bg-gray-800 rounded-lg overflow-hidden 
+shadow-md relative group">
+            <img
+              src={placeholderImage}
+              alt={`Placeholder ${i}`}
+              className="w-full h-full object-cover transition-transform 
+duration-300 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-75 text-white p-4 
+hidden group-hover:block">
+              <h4 className="text-lg font-serif mb-2">Recipe Title</h4>
+              <p className="text-sm">Description of the recipe</p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
+
     </motion.div>
   );
 };
