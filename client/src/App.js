@@ -13,6 +13,7 @@ import {
     Cell,
     ResponsiveContainer,
 } from 'recharts';
+import Heatmap from 'react-heatmap-calendar';
 import placeholderImage from "./images/placeholder.png";
 
 function App() {
