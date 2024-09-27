@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
-import placeholderImage from './images/placeholder.png'; 
+import placeholderImage from './images/placeholder.png';
+import HeatmapComponent from './components/Heatmap';
 
 // Header Component
 const Header = () => {
