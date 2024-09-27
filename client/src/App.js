@@ -240,35 +240,30 @@ function App() {
                         </div>
                     </div>
                 </motion.div>
+
                 {/* Image Carousel Section */}
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.6 }} // Added a slight delay for animation
+                    transition={{ duration: 0.5, delay: 0.6 }}
                     className="mt-12"
                 >
                     <h3 className="text-3xl font-serif text-center mb-8 text-yellow-300">
                         Related Meals
                     </h3>
                     <div className="flex overflow-x-auto gap-4">
-                        {' '}
-                        {/* Carousel container */}
-                        <div className="flex">
-                            {' '}
-                            {/* Image items container */}
-                            {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <div
-                                    key={i}
-                                    className="w-64 h-48 bg-gray-800 rounded-lg overflow-hidden shadow-md"
-                                >
-                                    <img
-                                        src={placeholderImage}
-                                        alt={`Placeholder ${i}`}
-                                        className="w-full h-full object-cover"
-                                    />
-                                </div>
-                            ))}
-                        </div>
+                        {[1, 2, 3, 4, 5, 6].map((i) => (
+                            <div
+                                key={i}
+                                className="w-64 h-48 bg-gray-800 rounded-lg overflow-hidden shadow-md"
+                            >
+                                <img
+                                    src={placeholderImage}
+                                    alt={`Placeholder ${i}`}
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                        ))}
                     </div>
                 </motion.div>
             </main>
