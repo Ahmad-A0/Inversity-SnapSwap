@@ -13,7 +13,8 @@ import {
     Cell,
     ResponsiveContainer,
 } from 'recharts';
-import placeholderImage from "./images/placeholder.png"
+import placeholderImage from "./images/placeholder.png";
+import Masonry from 'react-masonry-css';
 
 function App() {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -159,11 +160,21 @@ function App() {
                     transition={{ duration: 0.5, delay: 0.6 }}
                     className="mt-12"
                 >
-                    <div className="flex overflow-x-auto gap-4">
+                    <Masonry
+                        breakpointCols={{
+                            default: 4,
+                            1100: 3,
+                            700: 2,
+                            500: 1,
+                        }}
+                        className="my-masonry-grid"
+                        columnClassName="my-masonry-grid_column"
+                    >
                         {[1, 2, 3, 4, 5, 6].map((i) => (
                             <div
                                 key={i}
-                                className="w-64 h-48 bg-gray-800 rounded-lg overflow-hidden shadow-md"
+                                className="bg-gray-800 rounded-lg overflow-hidden shadow-md"
+                                style={{ width: `${Math.random() * 100 + 150}px`, height: `${Math.random() * 100 + 150}px` }}
                             >
                                 <img
                                     src={placeholderImage}
@@ -172,7 +183,7 @@ function App() {
                                 />
                             </div>
                         ))}
-                    </div>
+                    </Masonry>
                 </motion.div>
 
                 <motion.div
