@@ -12,10 +12,10 @@ function App() {
 
     return (
         <div className="bg-nestadarkblue min-h-screen font-sans">
-            <div className="relative">
-                <div className="absolute inset-0 flex items-center justify-center">
+            <div className="flex flex-col min-h-screen">
+                <div className="flex flex-grow">
                     {!selectedImage && (
-                        <div className="text-white text-center">
+                        <div className="flex flex-col justify-center items-center text-white">
                             <h1 className="text-6xl font-bold mb-4">
                                 FoodSwap
                             </h1>
@@ -37,11 +37,10 @@ function App() {
                         </div>
                     )}
                 </div>
-
-                <div className='flex flex-row'>
-                    <div className="flex flex-col justify-between">
-                        {(selectedImage || true) && (
-                            <div className=" bg-white bg-opacity-75 p-4 rounded-lg shadow-md ">
+                <div className="flex flex-grow">
+                    {(selectedImage || true) && (
+                        <div className="flex flex-row flex-grow">
+                            <div className="flex flex-col justify-between bg-white bg-opacity-75 p-4 rounded-lg shadow-md">
                                 <h2 className="text-2xl font-bold mb-2">
                                     Analysis & Suggestions
                                 </h2>
@@ -71,11 +70,11 @@ function App() {
                                     </li>
                                 </ul>
                             </div>
-                        )}
-                    </div>
-                    <div className="flex-grow relative">
-                        <img src={placeholderImage} className="absolute bottom-0 right-0 max-h-screen max-w-screen rounded-lg"></img>
-                    </div>
+                            <div className="flex-grow relative">
+                                <img src={placeholderImage} className="max-h-screen max-w-screen rounded-lg"></img>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
