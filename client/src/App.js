@@ -167,7 +167,7 @@ function App() {
                             700: 2,
                             500: 1,
                         }}
-                        className="my-masonry-grid min-w-full"
+                        className="my-masonry-grid"
                         columnClassName="my-masonry-grid_column"
                     >
                         {[1, 2, 3, 4, 5, 6].map((i) => (
