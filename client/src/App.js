@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import placeholderImage from './images/placeholder.png'; // Replace with your placeholder image
+import placeholderImage from './images/placeholder.jpg'; // Replace with your placeholder image
 
 function App() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -11,27 +11,25 @@ function App() {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen font-sans"> 
+    <div className="bg-gray-100 min-h-screen font-sans">
       <div className="relative">
         <img
           src={selectedImage || placeholderImage}
-          alt="Meal"
-          className="w-full h-screen object-cover" 
+          alt="Food"
+          className="w-full h-screen object-cover"
         />
 
         <div className="absolute inset-0 flex items-center justify-center">
           {!selectedImage && (
             <div className="text-white text-center">
-              <h1 className="text-6xl font-bold mb-4">SmartSwap</h1>
-              <p className="text-lg">
-                Analyze your meals and discover healthier swaps.
-              </p>
-              <input 
-                type="file" 
-                accept="image/*" 
-                onChange={handleImageChange} 
-                className="hidden" 
-                id="imageInput" 
+              <h1 className="text-6xl font-bold mb-4">FoodSwap</h1>
+              <p className="text-lg">Upload a picture of your food to get started.</p>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="hidden"
+                id="imageInput"
               />
               <label htmlFor="imageInput">
                 <button className="mt-6 bg-white text-gray-800 font-bold py-3 px-6 rounded-lg shadow-md hover:bg-gray-200">
@@ -43,11 +41,11 @@ function App() {
         </div>
 
         {selectedImage && (
-          <div className="absolute top-10 left-10 bg-white bg-opacity-75 p-4 rounded-lg shadow-md">
+          <div className="absolute top-10 right-10 bg-white bg-opacity-75 p-4 rounded-lg shadow-md w-1/4">
             <h2 className="text-2xl font-bold mb-2">Analysis & Suggestions</h2>
             {/* Dummy analysis and suggestions */}
-            <p>**Estimated Calories:** 550</p>
-            <p>**Macronutrients:**</p>
+            <p>Estimated Calories: 550</p>
+            <p>Macronutrients:</p>
             <ul className="list-disc pl-5">
               <li>Protein: 30g</li>
               <li>Carbohydrates: 60g</li>
