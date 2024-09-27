@@ -28,6 +28,17 @@
   color: #61dafb;
 }
 
+.heatmap-container {
+  @apply bg-gray-800 p-6 rounded-xl shadow-lg;
+}
+
+.heatmap-title {
+  @apply text-xl font-serif text-yellow-300 mb-4;
+}
+
+.heatmap {
+  @apply w-full h-80 rounded-lg;
+}
 
 @keyframes App-logo-spin {
   from {
