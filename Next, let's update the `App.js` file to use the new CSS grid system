@@ -1,0 +1,21 @@
+<motion.div
+  initial={{ opacity: 0, y: 50 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5, delay: 0.6 }}
+  className="mt-12"
+>
+  <div className="carousel">
+    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
+      <div
+        key={i}
+        className="w-full h-48 bg-gray-800 rounded-lg overflow-hidden shadow-md cursor-pointer hover:scale-110 transition duration-300"
+      >
+        <img
+          src={placeholderImage}
+          alt={`Placeholder ${i}`}
+          className="w-full h-full object-cover"
+        />
+      </div>
+    ))}
+  </div>
+</motion.div>
