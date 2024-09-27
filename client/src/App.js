@@ -163,13 +163,16 @@ function App() {
                         {[1, 2, 3, 4, 5, 6].map((i) => (
                             <div
                                 key={i}
-                                className="bg-gray-800 rounded-lg overflow-hidden shadow-md w-64 cursor-pointer hover:scale-110 transition-transform duration-300"
+                                className="bg-gray-800 rounded-lg overflow-hidden shadow-md w-64 cursor-pointer hover:scale-110 transition-transform duration-300 relative"
                             >
                                 <img
                                     src={placeholderImage}
                                     alt={`Placeholder ${i}`}
                                     className="w-full h-full object-cover"
                                 />
+                                <div className="absolute inset-0 flex items-center justify-center text-white text-xl font-bold opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                    Recipe {i}
+                                </div>
                             </div>
                         ))}
                     </div>
