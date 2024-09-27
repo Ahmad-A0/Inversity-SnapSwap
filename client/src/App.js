@@ -152,18 +152,18 @@ function App() {
                     </motion.div>
                 </div>
 
-                {/* Image Grid Section */}
+                {/* Carousel Section */}
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.6 }}
                     className="mt-12"
                 >
-                    <div className="ImageGrid">
+                    <div className="carousel-container overflow-x-scroll flex space-x-4">
                         {[1, 2, 3, 4, 5, 6].map((i) => (
                             <div
                                 key={i}
-                                className="bg-gray-800 rounded-lg overflow-hidden shadow-md"
+                                className="bg-gray-800 rounded-lg overflow-hidden shadow-md w-64"
                             >
                                 <img
                                     src={placeholderImage}
