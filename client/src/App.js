@@ -74,7 +74,7 @@ function App() {
                         )}
                     </div>
                     <div className="flex-grow relative">
-                        <img src={placeholderImage} className="absolute bottom-0 right-0 h-full rounded-lg"></img>
+                        <img src={placeholderImage} className="absolute bottom-0 right-0 max-h-screen max-w-screen rounded-lg"></img>
                     </div>
                 </div>
             </div>
