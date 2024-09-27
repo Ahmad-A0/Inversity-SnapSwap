@@ -14,7 +14,6 @@ import {
     ResponsiveContainer,
 } from 'recharts';
 import placeholderImage from "./images/placeholder.png";
-import Masonry from 'react-masonry-css';
 
 function App() {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -153,7 +152,7 @@ function App() {
                     </motion.div>
                 </div>
 
-                {/* Image Carousel Section */}
+                {/* Image Grid Section */}
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -165,7 +164,6 @@ function App() {
                             <div
                                 key={i}
                                 className="bg-gray-800 rounded-lg overflow-hidden shadow-md"
-                                style={{ width: `${Math.random() * 100 + 150}px`, height: `${Math.random() * 100 + 150}px` }}
                             >
                                 <img
                                     src={placeholderImage}
