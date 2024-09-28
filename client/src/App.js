@@ -68,7 +68,7 @@ function App() {
 
 For recipe suggestions, generate image links using the following format:
 
-[![image](https://image.pollinations.ai/prompt/{description}?width=1024&height=1024&nologo=true&seed={random_number})](https://image.pollinations.ai/prompt/{description}?width=1024&height=1024&nologo=true&seed={random_number})
+https://image.pollinations.ai/prompt/{description}?width=512&height=512&nologo=true&seed={random_number}
 
 Where:
 - \`{description}\` is a URL-encoded description of the recipe image.
@@ -76,7 +76,7 @@ Where:
 
 For example:
 
-[![image](https://image.pollinations.ai/prompt/healthy%20chicken%20stir-fry%20with%20brown%20rice%20close-up%20shot?width=1024&height=1024&nologo=true&seed=12345)](https://image.pollinations.ai/prompt/healthy%20chicken%20stir-fry%20with%20brown%20rice%20close-up%20shot?width=1024&height=1024&nologo=true&seed=12345)
+https://image.pollinations.ai/prompt/healthy%20chicken%20stir-fry%20with%20brown%20rice%20close-up%20shot?width=512&height=512&nologo=true&seed=12345
 
 Provide 6 recipe suggestions with images, titles, and descriptions.`,
                                 },
