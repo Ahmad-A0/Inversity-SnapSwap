@@ -10,7 +10,7 @@ const ImageUpload = ({ selectedImage, handleImageChange }) => {
                                                                                    
     return (                                                                       
         <div className="relative bg-gray-800 p-4 pb-0 rounded-xl shadow-lg         
-overflow-hidden h-[28rem]">                                                        
+overflow-hidden h-[40rem]">                                                        
             {selectedImage ? (                                                     
                 <img                                                               
                     src={selectedImage}                                            
@@ -47,7 +47,4 @@ bg-gray-700">
         </div>                                                                     
     );                                                                             
 };                                                                                 
-
-export default ImageUpload;
-                                                                                   
 export default ImageUpload;   
