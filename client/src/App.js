@@ -284,10 +284,32 @@ function App() {
 
     const COLORS = ['#FFD700', '#B8860B', '#DAA520'];
 
-    const handleImageChange = (event) => {
+    const handleImageChange = async (event) => {
         if (event.target.files && event.target.files[0]) {
-            setSelectedImage(URL.createObjectURL(event.target.files[0]));
-            // ... your image analysis logic to update calories, protein, etc. ...
+            const file = event.target.files[0];
+            const formData = new FormData();
+            formData.append('image', file);
+
+            try {
+                const response = await fetch('http://localhost:3000/analyze', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setCalories(data.estimated_calories);
+                    setProtein(data.macros.protein);
+                    setCarbs(data.macros.carbohydrates);
+                    setFat(data.macros.fat);
+                } else {
+                    console.error('Failed to analyze image:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error analyzing image:', error);
+            }
+
+            setSelectedImage(URL.createObjectURL(file));
         }
     };
 
@@ -302,10 +324,10 @@ function App() {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <AnalysisSection
-                        calories={550}
-                        protein={30}
-                        carbs={60}
-                        fat={25}
+                        calories={calories}
+                        protein={protein}
+                        carbs={carbs}
+                        fat={fat}
                     />
 
                     <motion.div
