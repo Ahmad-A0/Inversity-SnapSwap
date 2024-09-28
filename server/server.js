@@ -8,7 +8,7 @@ import OpenAI from 'openai'; // Import the OpenAI package
 dotenv.config();
 
 const app = express();
-const port = 3000;
+const port = 4000;
 
 const upload = multer({
     dest: './uploads/',
