@@ -35,7 +35,7 @@ function App() {
     const [protein, setProtein] = useState(null);
     const [carbs, setCarbs] = useState(null);
     const [fat, setFat] = useState(null);
-    const [swapSuggestions, setSwapSuggestions] = useState([true, true, true]);
+    const [swapSuggestions, setSwapSuggestions] = useState([]);
     const [loading, setLoading] = useState(false);
 
     const caloriesSavedData = [

@@ -5,7 +5,7 @@ import CalendarHeatmap from 'react-calendar-heatmap';
 const HeatmapComponent = ({ data }) => {
     return (
         <div className="heatmap-container">
-            <h3 className="heatmap-title">Daily Swaps</h3>
+            <h3 className="heatmap-title text-center text-lg">Daily Swaps</h3>
             <div className="heatmap">
                 <CalendarHeatmap
                     startDate={new Date('2024-01-01')}
