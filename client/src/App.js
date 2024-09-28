@@ -259,7 +259,7 @@ Provide 6 recipe suggestions with images, titles, and descriptions.`,
         <div className="min-h-screen font-sans text-gray-100 bg-gray-900">
             <Header />
 
-            <main className="container mx-auto px-4 py-8">
+            <main className="container mx-auto px-4 py-8" role="main">
                 <h2 className="text-5xl font-sans font-bold mb-12 mt-5 text-center text-purple-500">
                     Turn your meals into healthier realities
                 </h2>

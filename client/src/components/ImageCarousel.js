@@ -9,8 +9,10 @@ const ImageCarousel = ({ carouselData }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
             className="mt-12"
+            role="region"
+            aria-label="Image Carousel"
         >
-            <div className="flex overflow-x-auto gap-8 cursor-pointer">
+            <div className="flex overflow-x-auto gap-8 cursor-pointer" role="list">
                 {carouselData.map((item, index) => (
                     <motion.div
                         key={index}
@@ -18,6 +20,8 @@ const ImageCarousel = ({ carouselData }) => {
                         animate={{ opacity: 1 }}
                         transition={{ duration: 1, delay: index * 0.2 }}
                         className="w-64 h-48 bg-blue-500 rounded-lg overflow-hidden shadow-md relative group"
+                        role="listitem"
+                        aria-label={item.title}
                     >
                         <div className="relative w-full h-full pt-2">
                             <img
@@ -27,6 +31,7 @@ const ImageCarousel = ({ carouselData }) => {
                             />
                             <div
                                 className="absolute inset-0 bg-black bg-opacity-75 text-white p-4 hidden group-hover:block"
+                                aria-hidden="true"
                             >
                                 <h4 className="text-lg font-serif mb-2">
                                     {item.title}

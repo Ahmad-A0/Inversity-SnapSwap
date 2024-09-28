@@ -4,7 +4,7 @@ import CalendarHeatmap from 'react-calendar-heatmap';
 
 const HeatmapComponent = ({ data }) => {
     return (
-        <div className="heatmap-container">
+        <div className="heatmap-container" role="region" aria-label="Daily Swaps Heatmap">
             <h3 className="heatmap-title text-center text-lg">Daily Swaps</h3>
             <div className="heatmap">
                 <CalendarHeatmap
@@ -14,6 +14,12 @@ const HeatmapComponent = ({ data }) => {
                     ]}
                     classForValue={(value) => {
                         return `color-scale-${Math.ceil(Math.random() * 5)}`;
+                    }}
+                    titleForValue={(value) => {
+                        if (!value) {
+                            return 'No data';
+                        }
+                        return `${value.date}: ${value.count} swaps`;
                     }}
                 />
             </div>

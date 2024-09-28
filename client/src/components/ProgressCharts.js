@@ -31,6 +31,8 @@ const ProgressCharts = ({ caloriesSavedData, macroBreakdownData, colors }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             className="mt-12"
+            role="region"
+            aria-label="Progress Charts"
         >
             <h3 className="text-3xl font-serif text-center mb-8 text-yellow-300">
                 Your Progress
@@ -49,6 +51,7 @@ const ProgressCharts = ({ caloriesSavedData, macroBreakdownData, colors }) => {
                                 left: 20,
                                 bottom: 5,
                             }}
+                            aria-label="Calories Saved Chart"
                         >
                             <CartesianGrid
                                 strokeDasharray="3 3"
@@ -78,7 +81,7 @@ const ProgressCharts = ({ caloriesSavedData, macroBreakdownData, colors }) => {
                         Macronutrient Breakdown
                     </h4>
                     <ResponsiveContainer width="100%" height={300}>
-                        <PieChart>
+                        <PieChart aria-label="Macronutrient Breakdown Chart">
                             <Pie
                                 data={macroBreakdownData}
                                 cx="50%"
