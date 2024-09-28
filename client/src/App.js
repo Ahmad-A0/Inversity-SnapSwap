@@ -196,11 +196,23 @@ Provide 6 recipe suggestions with images, titles, and descriptions.`,
 
             console.log('OpenAI API response received:', response);
 
-            const analysisResults = response.data.choices[0].output.text;
+            const analysisResults = response.choices[0]?.message?.content;
             if (analysisResults) {
-              console.log('Analysis results parsed:', analysisResults);
-              // Update state with analysis results
-              setCalories(analysisResults);
+              try {
+                const parsedResults = JSON.parse(analysisResults);
+                console.log('Analysis results parsed:', parsedResults);
+
+                // Update state with analysis results
+                setCalories(parsedResults.estimated_calories);
+                setProtein(parsedResults.macros.protein);
+                setCarbs(parsedResults.macros.carbohydrates);
+                setFat(parsedResults.macros.fat);
+                setSwapSuggestions(parsedResults.swap_suggestions);
+                setCarouselData(parsedResults.recipe_images);
+                setAnalysisText(parsedResults.analysis_text);
+              } catch (parseError) {
+                console.error('Error parsing analysis results:', parseError);
+              }
             } else {
               console.error('Unexpected response format from OpenAI API:', response);
             }
