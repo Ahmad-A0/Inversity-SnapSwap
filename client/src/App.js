@@ -15,6 +15,11 @@ import {
 } from 'recharts';
 import placeholderImage from './images/placeholder.png';
 import HeatmapComponent from './components/Heatmap';
+import OpenAI from 'openai';
+
+const openai = new OpenAI({
+    apiKey: process.env.REACT_APP_OPENAI_API_KEY, // Ensure this is set in your .env file
+});
 
 // Header Component
 const Header = () => {
@@ -292,28 +297,119 @@ function App() {
     const handleImageChange = async (event) => {
         if (event.target.files && event.target.files[0]) {
             const file = event.target.files[0];
-            const formData = new FormData();
-            formData.append('image', file);
+            const reader = new FileReader();
 
-            try {
-                const response = await fetch('http://localhost:4000/analyze', {
-                    method: 'POST',
-                    body: formData,
-                });
+            reader.onload = async (e) => {
+                if (e.target && e.target.result) {
+                    const base64Image = e.target.result.toString();
 
-                if (response.ok) {
-                    const data = await response.json();
-                    setCalories(data.estimated_calories);
-                    setProtein(data.macros.protein);
-                    setCarbs(data.macros.carbohydrates);
-                    setFat(data.macros.fat);
-                } else {
-                    console.error('Failed to analyze image:', response.statusText);
+                    try {
+                        const response = await openai.chat.completions.create({
+                            model: 'gpt-4-vision-preview',
+                            messages: [
+                                {
+                                    role: 'system',
+                                    content:
+                                        'You are a helpful AI assistant that can analyze food images and provide structured nutritional information.',
+                                },
+                                {
+                                    role: 'user',
+                                    content: [
+                                        {
+                                            type: 'text',
+                                            text: 'Analyze this meal and tell me what is in it, estimate the calories and macros, and suggest healthier swaps if possible.',
+                                        },
+                                        {
+                                            type: 'image_url',
+                                            image_url: {
+                                                url: `data:image/jpeg;base64,${base64Image}`,
+                                            },
+                                        },
+                                    ],
+                                },
+                            ],
+                            response_format: {
+                                type: 'json_schema',
+                                json_schema: {
+                                    name: 'meal_analysis',
+                                    strict: true,
+                                    schema: {
+                                        type: 'object',
+                                        properties: {
+                                            food_items: {
+                                                type: 'array',
+                                                items: {
+                                                    type: 'string',
+                                                },
+                                            },
+                                            estimated_calories: {
+                                                type: 'integer',
+                                            },
+                                            macros: {
+                                                type: 'object',
+                                                properties: {
+                                                    protein: {
+                                                        type: 'integer',
+                                                    },
+                                                    carbohydrates: {
+                                                        type: 'integer',
+                                                    },
+                                                    fat: {
+                                                        type: 'integer',
+                                                    },
+                                                },
+                                                required: ['protein', 'carbohydrates', 'fat'],
+                                                additionalProperties: false,
+                                            },
+                                            swap_suggestions: {
+                                                type: 'array',
+                                                items: {
+                                                    type: 'object',
+                                                    properties: {
+                                                        original_item: {
+                                                            type: 'string',
+                                                        },
+                                                        suggested_swap: {
+                                                            type: 'string',
+                                                        },
+                                                        reason: {
+                                                            type: 'string',
+                                                        },
+                                                    },
+                                                    required: [
+                                                        'original_item',
+                                                        'suggested_swap',
+                                                        'reason',
+                                                    ],
+                                                    additionalProperties: false,
+                                                },
+                                            },
+                                        },
+                                        required: [
+                                            'food_items',
+                                            'estimated_calories',
+                                            'macros',
+                                            'swap_suggestions',
+                                        ],
+                                        additionalProperties: false,
+                                    },
+                                },
+                            },
+                            max_tokens: 500,
+                        });
+
+                        const analysisResults = response.data;
+                        setCalories(analysisResults.estimated_calories);
+                        setProtein(analysisResults.macros.protein);
+                        setCarbs(analysisResults.macros.carbohydrates);
+                        setFat(analysisResults.macros.fat);
+                    } catch (error) {
+                        console.error('Error analyzing image:', error);
+                    }
                 }
-            } catch (error) {
-                console.error('Error analyzing image:', error);
-            }
+            };
 
+            reader.readAsDataURL(file);
             setSelectedImage(URL.createObjectURL(file));
         }
     };
