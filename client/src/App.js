@@ -6,7 +6,7 @@ import StatsBar from './components/StatsBar';
 import ImageUpload from './components/ImageUpload';
 import ImageCarousel from './components/ImageCarousel';
 import ProgressCharts from './components/ProgressCharts';
-import OpenAI from 'openai';
+import OpenAI, { stream } from 'openai';
 
 const openai = new OpenAI({
     dangerouslyAllowBrowser: true,
