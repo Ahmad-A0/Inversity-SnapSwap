@@ -34,7 +34,7 @@ const Header = () => {
 };
 
 // Analysis Section Component
-const AnalysisSection = ({ calories, protein, carbs, fat }) => {
+const AnalysisSection = ({ calories, protein, carbs, fat, swapSuggestions }) => {
     return (
         <motion.div
             initial={{ opacity: 0, y: 50 }}
