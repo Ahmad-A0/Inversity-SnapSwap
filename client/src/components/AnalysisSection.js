@@ -44,13 +44,23 @@ const AnalysisSection = ({
                             <h4 className="text-xl font-serif mt-6 mb-2 text-yellow-300">
                                 Suggestions:
                             </h4>
-                            <ul className="list-disc pl-5 text-lg mb-6 text-gray-300">
+                            <div className="space-y-4">
                                 {swapSuggestions.map((suggestion, index) => (
-                                    <li key={index}>
-                                        Swap <b>{suggestion.original_item}</b> for <u><b>{suggestion.suggested_swap}</b></u> - {suggestion.reason}
-                                    </li>
+                                    <motion.div
+                                        key={index}
+                                        className="bg-gray-700 p-4 rounded-lg shadow-md"
+                                        whileHover={{ scale: 1.05 }}
+                                    >
+                                        <p>
+                                            Swap <b>{suggestion.original_item}</b> for <u><b>{suggestion.suggested_swap}</b></u> - {suggestion.reason}
+                                        </p>
+                                        <div className="mt-2 flex space-x-2">
+                                            <button className="bg-green-500 text-white px-2 py-1 rounded">Like</button>
+                                            <button className="bg-red-500 text-white px-2 py-1 rounded">Dislike</button>
+                                        </div>
+                                    </motion.div>
                                 ))}
-                            </ul>
+                            </div>
                         </>
                     )}
                 </>
