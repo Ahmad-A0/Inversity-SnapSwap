@@ -302,7 +302,7 @@ function App() {
 
             reader.onload = async (e) => {
                 if (e.target && e.target.result) {
-                    const base64Image = e.target.result.toString();
+                    const base64Image = e.target.result.split(',')[1]; // Extract the base64 part without the data URL prefix
 
                     try {
                         const response = await openai.chat.completions.create({
