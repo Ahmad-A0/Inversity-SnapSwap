@@ -301,23 +301,8 @@ function App() {
     const [protein, setProtein] = useState(null);
     const [carbs, setCarbs] = useState(null);
     const [fat, setFat] = useState(null);
-    const [swapSuggestions, setSwapSuggestions] = useState([
-        {
-            original_item: 'white rice',
-            suggested_swap: 'brown rice',
-            reason: 'for added fiber and nutrients',
-        },
-        {
-            original_item: 'fried chicken',
-            suggested_swap: 'grilled chicken',
-            reason: 'for reduced fat intake',
-        },
-        {
-            original_item: 'fries',
-            suggested_swap: 'sweet potato fries',
-            reason: 'for added vitamins and minerals',
-        },
-    ]);
+    const [swapSuggestions, setSwapSuggestions] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const caloriesSavedData = [
         { date: '2023-10-25', caloriesSaved: 150 },
@@ -341,6 +326,8 @@ function App() {
             const reader = new FileReader();
 
             console.log('Image upload started:', file.name);
+
+            setLoading(true);
 
             reader.onload = async (e) => {
                 if (e.target && e.target.result) {
@@ -481,6 +468,8 @@ function App() {
                         }
                     } catch (error) {
                         console.error('Error analyzing image:', error);
+                    } finally {
+                        setLoading(false);
                     }
                 }
             };
@@ -506,6 +495,7 @@ function App() {
                         carbs={carbs}
                         fat={fat}
                         swapSuggestions={swapSuggestions}
+                        loading={loading}
                     />
 
                     <motion.div
