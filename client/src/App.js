@@ -18,6 +18,7 @@ import HeatmapComponent from './components/Heatmap';
 import OpenAI from 'openai';
 
 const openai = new OpenAI({
+    dangerouslyAllowBrowser: true,  
     apiKey: process.env.REACT_APP_OPENAI_API_KEY, // Ensure this is set in your .env file
 });
 
@@ -305,7 +306,7 @@ function App() {
 
                     try {
                         const response = await openai.chat.completions.create({
-                            model: 'gpt-4-vision-preview',
+                            model: 'gpt-4o-mini',
                             messages: [
                                 {
                                     role: 'system',
@@ -358,7 +359,11 @@ function App() {
                                                         type: 'integer',
                                                     },
                                                 },
-                                                required: ['protein', 'carbohydrates', 'fat'],
+                                                required: [
+                                                    'protein',
+                                                    'carbohydrates',
+                                                    'fat',
+                                                ],
                                                 additionalProperties: false,
                                             },
                                             swap_suggestions: {
