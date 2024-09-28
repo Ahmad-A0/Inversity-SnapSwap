@@ -53,14 +53,18 @@ const AnalysisSection = ({
             </h3>
             {loading ? (
                 <div className="animate-pulse">
-                    <div className="h-4 bg-gray-700 rounded mb-2"></div>
-                    <div className="h-4 bg-gray-700 rounded mb-2"></div>
-                    <div className="h-4 bg-gray-700 rounded mb-2"></div>
-                    <div className="h-4 bg-gray-700 rounded mb-2"></div>
+                    {Array.from({ length: 9 }, (_, index) => (
+                        <div
+                            key={index}
+                            className="h-4 bg-gray-700 rounded mb-2"
+                        ></div>
+                    ))}
                 </div>
             ) : (
                 <>
-                    <p className="text-xl mb-2">Estimated Calories: {calories}</p>
+                    <p className="text-xl mb-2">
+                        Estimated Calories: {calories}
+                    </p>
                     <p className="text-xl mb-2">Macronutrients:</p>
                     <ul className="list-disc pl-5 text-lg mb-4 text-gray-300">
                         <li>Protein: {protein}g</li>
@@ -75,7 +79,8 @@ const AnalysisSection = ({
                             <ul className="list-disc pl-5 text-lg mb-6 text-gray-300">
                                 {swapSuggestions.map((suggestion, index) => (
                                     <li key={index}>
-                                        Swap <b>{suggestion.original_item}</b> for{' '}
+                                        Swap <b>{suggestion.original_item}</b>{' '}
+                                        for{' '}
                                         <u>
                                             <b>{suggestion.suggested_swap}</b>
                                         </u>{' '}
@@ -299,7 +304,7 @@ function App() {
     const [protein, setProtein] = useState(null);
     const [carbs, setCarbs] = useState(null);
     const [fat, setFat] = useState(null);
-    const [swapSuggestions, setSwapSuggestions] = useState([]);
+    const [swapSuggestions, setSwapSuggestions] = useState([true, true, true]);
     const [loading, setLoading] = useState(false);
 
     const caloriesSavedData = [
