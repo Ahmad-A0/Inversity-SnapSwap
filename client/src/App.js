@@ -72,8 +72,8 @@ For recipe suggestions, generate image links using the following format:
 https://image.pollinations.ai/prompt/{description}?width=512&height=512&nologo=true&seed={random_number}
 
 Where:
-- `{description}` is a URL-encoded description of the recipe image.
-- `{random_number}` is a randomly generated number for the seed parameter.
+- \`{description}\` is a URL-encoded description of the recipe image.
+- \`{random_number}\` is a randomly generated number for the seed parameter.
 
 For example:
 
