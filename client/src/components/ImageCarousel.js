@@ -10,7 +10,7 @@ const ImageCarousel = ({ carouselData }) => {
             transition={{ duration: 0.5, delay: 0.6 }}
             className="mt-12"
         >
-            <div className="flex overflow-x-auto gap-8">
+            <div className="flex overflow-x-auto gap-8 cursor-pointer">
                 {carouselData.map((item, index) => (
                     <motion.div
                         key={index}
