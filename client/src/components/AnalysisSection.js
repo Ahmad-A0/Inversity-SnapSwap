@@ -20,7 +20,7 @@ const AnalysisSection = ({
                 Analysis & Suggestions
             </h3>
             {loading ? (
-                <div className="animate-pulse"> // Loading state
+                <div className="animate-pulse">
                     {Array.from({ length: 9 }, (_, index) => (
                         <div
                             key={index}
@@ -52,11 +52,23 @@ const AnalysisSection = ({
                                         whileHover={{ scale: 1.05 }}
                                     >
                                         <p>
-                                            Swap <b>{suggestion.original_item}</b> for <u><b>{suggestion.suggested_swap}</b></u> - {suggestion.reason}
+                                            Swap{' '}
+                                            <b>{suggestion.original_item}</b>{' '}
+                                            for{' '}
+                                            <u>
+                                                <b>
+                                                    {suggestion.suggested_swap}
+                                                </b>
+                                            </u>{' '}
+                                            - {suggestion.reason}
                                         </p>
                                         <div className="mt-2 flex space-x-2">
-                                            <button className="bg-green-500 text-white px-2 py-1 rounded">Like</button>
-                                            <button className="bg-red-500 text-white px-2 py-1 rounded">Dislike</button>
+                                            <button className="bg-green-500 text-white px-2 py-1 rounded">
+                                                Like
+                                            </button>
+                                            <button className="bg-red-500 text-white px-2 py-1 rounded">
+                                                Dislike
+                                            </button>
                                         </div>
                                     </motion.div>
                                 ))}
