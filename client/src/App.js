@@ -161,6 +161,15 @@ hidden group-hover:block"
 
 // Progress Charts Component
 const ProgressCharts = ({ caloriesSavedData, macroBreakdownData, colors }) => {
+    const swapData = [
+        { date: '2023-10-25', swaps: 15 },
+        { date: '2023-10-26', swaps: 20 },
+        { date: '2023-10-27', swaps: 5 },
+        { date: '2023-10-28', swaps: 18 },
+        { date: '2023-10-29', swaps: 12 },
+        // Add more data as needed
+    ];
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -242,6 +251,11 @@ const ProgressCharts = ({ caloriesSavedData, macroBreakdownData, colors }) => {
                     </ResponsiveContainer>
                 </div>
             </div>
+            <div className="bg-gray-800 p-6 my-10 rounded-xl shadow-lg">
+                <ResponsiveContainer width="100%" height="50%">
+                    <HeatmapComponent data={swapData} />
+                </ResponsiveContainer>
+            </div>
         </motion.div>
     );
 };
@@ -253,15 +267,6 @@ function App() {
     const [protein, setProtein] = useState(null);
     const [carbs, setCarbs] = useState(null);
     const [fat, setFat] = useState(null);
-
-    const swapData = [
-        { date: '2023-10-25', swaps: 15 },
-        { date: '2023-10-26', swaps: 20 },
-        { date: '2023-10-27', swaps: 5 },
-        { date: '2023-10-28', swaps: 18 },
-        { date: '2023-10-29', swaps: 12 },
-        // Add more data as needed
-    ];
 
     const caloriesSavedData = [
         { date: '2023-10-25', caloriesSaved: 150 },
@@ -315,7 +320,6 @@ function App() {
                             carbs={carbs}
                             fat={fat}
                         />
-                        <HeatmapComponent data={swapData} />
                         <ImageUpload
                             selectedImage={selectedImage}
                             handleImageChange={handleImageChange}
