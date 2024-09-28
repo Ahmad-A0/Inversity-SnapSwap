@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import Header from './components/Header';
+import AnalysisSection from './components/AnalysisSection';
+import StatsBar from './components/StatsBar';
+import ImageUpload from './components/ImageUpload';
+import ImageCarousel from './components/ImageCarousel';
+import ProgressCharts from './components/ProgressCharts';
+import RecipeCarousel from './components/RecipeCarousel'; // New component
 import {
     LineChart,
     Line,
@@ -16,12 +23,8 @@ import {
 import placeholderImage from './images/placeholder.png';
 import HeatmapComponent from './components/Heatmap';
 import OpenAI from 'openai';
-import Header from './components/Header';
-import AnalysisSection from './components/AnalysisSection';
-import StatsBar from './components/StatsBar';
-import ImageUpload from './components/ImageUpload';
-import ImageCarousel from './components/ImageCarousel';
-import ProgressCharts from './components/ProgressCharts';
+
+
 
 const openai = new OpenAI({
     dangerouslyAllowBrowser: true,
@@ -218,20 +221,11 @@ function App() {
             <Header />
 
             <main className="container mx-auto px-4 py-8">
-                <h2 className="text-5xl font-serif mb-12 text-center">
+                <h2 className="text-5xl font-sans font-bold mb-12 text-center text-purple-500">
                     Turn your meals into healthier realities
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <AnalysisSection
-                        calories={calories}
-                        protein={protein}
-                        carbs={carbs}
-                        fat={fat}
-                        swapSuggestions={swapSuggestions}
-                        loading={loading}
-                    />
-
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -249,17 +243,29 @@ function App() {
                             handleImageChange={handleImageChange}
                         />
                     </motion.div>
+
+                    <AnalysisSection
+                        calories={calories}
+                        protein={protein}
+                        carbs={carbs}
+                        fat={fat}
+                        swapSuggestions={swapSuggestions}
+                        loading={loading}
+                    />
                 </div>
+
+                <RecipeCarousel /> {/* New component */}
 
                 <ImageCarousel />
 
                 <ProgressCharts
                     caloriesSavedData={caloriesSavedData}
                     macroBreakdownData={macroBreakdownData}
-                    colors={COLORS}
+                    colors={['#8B5CF6', '#10B981', '#F59E0B']} // Updated colors
                 />
             </main>
         </div>
     );
 }
+
 export default App;

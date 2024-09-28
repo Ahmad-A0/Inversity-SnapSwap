@@ -1,14 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
         'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
         'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Merriweather', serif;
 }
 
 code {
@@ -16,18 +22,25 @@ code {
         monospace;
 }
 
-.color-scale-1 {
-    fill: #d6e685;
+.color-scale-1 { fill: #8B5CF6; }
+.color-scale-2 { fill: #7C3AED; }
+.color-scale-3 { fill: #6D28D9; }
+.color-scale-4 { fill: #5B21B6; }
+.color-scale-5 { fill: #4C1D95; }
+
+/* Add some custom utility classes */
+.text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
-.color-scale-2 {
-    fill: #8cc665;
+
+.gradient-bg {
+    background: linear-gradient(45deg, #8B5CF6, #3B82F6);
 }
-.color-scale-3 {
-    fill: #44a340;
+
+.hover-lift {
+    transition: transform 0.2s ease-in-out;
 }
-.color-scale-4 {
-    fill: #1e6823;
-}
-.color-scale-5 {
-    fill: rgb(25, 33, 44);
+
+.hover-lift:hover {
+    transform: translateY(-5px);
 }

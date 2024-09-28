@@ -11,37 +11,38 @@ const AnalysisSection = ({
 }) => {
     return (
         <motion.div
-            initial={{ opacity: 0, y: 50 }} // Initial animation state
-            animate={{ opacity: 1, y: 0 }} // Animation state when rendered
-            transition={{ duration: 0.5 }} // Duration of the animation
-            className="col-span-1 bg-gray-800 p-6 rounded-xl shadow-lg" // Styling
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="bg-gray-800 p-6 rounded-xl shadow-lg relative overflow-hidden"
         >
-            <h3 className="text-2xl font-serif mb-4 text-yellow-300">
+            <div className="absolute top-0 right-0 w-20 h-20 bg-purple-500 transform rotate-45 translate-x-10 -translate-y-10"></div>
+            <h3 className="text-2xl font-sans font-bold mb-4 text-yellow-400">
                 Analysis & Suggestions
             </h3>
             {loading ? (
-                <div className="animate-pulse">
-                    {Array.from({ length: 9 }, (_, index) => (
+                <div className="animate-pulse space-y-2">
+                    {Array.from({ length: 5 }, (_, index) => (
                         <div
                             key={index}
-                            className="h-4 bg-gray-700 rounded mb-2"
+                            className="h-4 bg-gray-700 rounded"
                         ></div>
                     ))}
                 </div>
             ) : (
                 <>
                     <p className="text-xl mb-2">
-                        Estimated Calories: {calories}
+                        Estimated Calories: <span className="font-bold text-purple-400">{calories}</span>
                     </p>
                     <p className="text-xl mb-2">Macronutrients:</p>
                     <ul className="list-disc pl-5 text-lg mb-4 text-gray-300">
-                        <li>Protein: {protein}g</li>
-                        <li>Carbohydrates: {carbs}g</li>
-                        <li>Fat: {fat}g</li>
+                        <li>Protein: <span className="font-bold text-green-400">{protein}g</span></li>
+                        <li>Carbohydrates: <span className="font-bold text-blue-400">{carbs}g</span></li>
+                        <li>Fat: <span className="font-bold text-yellow-400">{fat}g</span></li>
                     </ul>
                     {swapSuggestions && swapSuggestions.length > 0 && (
                         <>
-                            <h4 className="text-xl font-serif mt-6 mb-2 text-yellow-300">
+                            <h4 className="text-xl font-sans font-bold mt-6 mb-2 text-yellow-400">
                                 Suggestions:
                             </h4>
                             <div className="space-y-4">
@@ -52,24 +53,18 @@ const AnalysisSection = ({
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.5, delay: index * 0.1 }}
-                                        whileHover={{ scale: 1.05 }}
+                                        whileHover={{ scale: 1.02 }}
                                     >
                                         <p>
-                                            Swap{' '}
-                                            <b>{suggestion.original_item}</b>{' '}
-                                            for{' '}
-                                            <u>
-                                                <b>
-                                                    {suggestion.suggested_swap}
-                                                </b>
-                                            </u>{' '}
-                                            - {suggestion.reason}
+                                            Swap <span className="font-bold">{suggestion.original_item}</span> for{' '}
+                                            <span className="font-bold underline">{suggestion.suggested_swap}</span>
+                                            {' '}- {suggestion.reason}
                                         </p>
                                         <div className="mt-2 flex space-x-2">
-                                            <button className="bg-green-500 text-white px-2 py-1 rounded">
+                                            <button className="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-green-600 transition-colors duration-200">
                                                 Like
                                             </button>
-                                            <button className="bg-red-500 text-white px-2 py-1 rounded">
+                                            <button className="bg-red-500 text-white px-3 py-1 rounded-full hover:bg-red-600 transition-colors duration-200">
                                                 Dislike
                                             </button>
                                         </div>
