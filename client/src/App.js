@@ -80,7 +80,7 @@ const AnalysisSection = ({ calories, protein, carbs, fat, swapSuggestions }) => 
                         ))}
                     </ul>
                 </>
-            )}
+            )
             <h4 className="text-xl font-serif mt-6 mb-2 text-yellow-300">
                 Suggestions:
             </h4>
