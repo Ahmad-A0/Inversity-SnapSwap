@@ -8,6 +8,7 @@ const AnalysisSection = ({
     fat,
     swapSuggestions,
     loading,
+    analysisText,
 }) => {
     return (
         <motion.div
@@ -72,6 +73,11 @@ const AnalysisSection = ({
                                 ))}
                             </div>
                         </>
+                    )}
+                    {analysisText && (
+                        <div className="text-lg mb-4 text-gray-300">
+                            {analysisText}
+                        </div>
                     )}
                 </>
             )}

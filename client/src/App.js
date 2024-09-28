@@ -23,6 +23,7 @@ function App() {
     const [swapSuggestions, setSwapSuggestions] = useState([]);
     const [carouselData, setCarouselData] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [analysisText, setAnalysisText] = useState('');
 
     const caloriesSavedData = [
         { date: '2024-09-25', caloriesSaved: 150 },
@@ -206,35 +207,49 @@ Provide 6 recipe suggestions with images, titles, and descriptions.`,
                                 },
                             },
                             max_tokens: 4096,
+                            stream: true,
                         });
 
                         console.log(
                             'OpenAI API response received:',
-                            response.choices[0].message.content
+                            response
                         );
 
-                        const analysisResults = JSON.parse(
-                            response.choices[0].message.content
-                        );
-                        if (analysisResults) {
-                            console.log(
-                                'Analysis results parsed:',
-                                analysisResults
-                            );
-                            setCalories(analysisResults.estimated_calories);
-                            setProtein(analysisResults.macros.protein);
-                            setCarbs(analysisResults.macros.carbohydrates);
-                            setFat(analysisResults.macros.fat);
-                            setSwapSuggestions(
-                                analysisResults.swap_suggestions
-                            );
-                            setCarouselData(analysisResults.recipe_images);
-                        } else {
-                            console.error(
-                                'Unexpected response format from OpenAI API:',
-                                response
-                            );
-                        }
+                        const reader = response.stream.read();
+
+                        reader.on('data', (chunk) => {
+                            console.log('Received chunk:', chunk);
+                            setAnalysisText((prevText) => prevText + chunk);
+                        });
+
+                        reader.on('end', () => {
+                            console.log('Stream ended');
+                            // Handle the final response
+                            const analysisResults = JSON.parse(response.data);
+                            if (analysisResults) {
+                                console.log(
+                                    'Analysis results parsed:',
+                                    analysisResults
+                                );
+                                setCalories(analysisResults.estimated_calories);
+                                setProtein(analysisResults.macros.protein);
+                                setCarbs(analysisResults.macros.carbohydrates);
+                                setFat(analysisResults.macros.fat);
+                                setSwapSuggestions(
+                                    analysisResults.swap_suggestions
+                                );
+                                setCarouselData(analysisResults.recipe_images);
+                            } else {
+                                console.error(
+                                    'Unexpected response format from OpenAI API:',
+                                    response
+                                );
+                            }
+                        });
+
+                        reader.on('error', (error) => {
+                            console.error('Error reading stream:', error);
+                        });
                     } catch (error) {
                         console.error('Error analyzing image:', error);
                     } finally {
@@ -283,6 +298,7 @@ Provide 6 recipe suggestions with images, titles, and descriptions.`,
                         fat={fat}
                         swapSuggestions={swapSuggestions}
                         loading={loading}
+                        analysisText={analysisText}
                     />
                 </div>
 
