@@ -404,10 +404,14 @@ function App() {
                         });
 
                         const analysisResults = response.data;
-                        setCalories(analysisResults.estimated_calories);
-                        setProtein(analysisResults.macros.protein);
-                        setCarbs(analysisResults.macros.carbohydrates);
-                        setFat(analysisResults.macros.fat);
+                        if (analysisResults) {
+                            setCalories(analysisResults.estimated_calories);
+                            setProtein(analysisResults.macros.protein);
+                            setCarbs(analysisResults.macros.carbohydrates);
+                            setFat(analysisResults.macros.fat);
+                        } else {
+                            console.error('Unexpected response format from OpenAI API:', response);
+                        }
                     } catch (error) {
                         console.error('Error analyzing image:', error);
                     }
