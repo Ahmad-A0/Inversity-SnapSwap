@@ -300,9 +300,13 @@ function App() {
             const file = event.target.files[0];
             const reader = new FileReader();
 
+            console.log('Image upload started:', file.name);
+
             reader.onload = async (e) => {
                 if (e.target && e.target.result) {
                     const base64Image = e.target.result.split(',')[1]; // Extract the base64 part without the data URL prefix
+
+                    console.log('Image read as base64:', base64Image.substring(0, 50) + '...');
 
                     try {
                         const response = await openai.chat.completions.create({
@@ -403,8 +407,11 @@ function App() {
                             max_tokens: 500,
                         });
 
+                        console.log('OpenAI API response received:', response.choices[0].message.content.substring(0, 50) + '...');
+
                         const analysisResults = JSON.parse(response.choices[0].message.content);
                         if (analysisResults) {
+                            console.log('Analysis results parsed:', analysisResults);
                             setCalories(analysisResults.estimated_calories);
                             setProtein(analysisResults.macros.protein);
                             setCarbs(analysisResults.macros.carbohydrates);
