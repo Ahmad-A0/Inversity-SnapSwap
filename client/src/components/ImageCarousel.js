@@ -21,22 +21,24 @@ const ImageCarousel = () => {
  shadow-md                                                                          
  relative group"
                     >
-                        <img
-                            src={placeholderImage}
-                            alt={`Placeholder ${i}`}
-                            className="w-full h-full object-contain                
+                        <div className="relative w-full h-full">
+                            <img
+                                src={placeholderImage}
+                                alt={`Placeholder ${i}`}
+                                className="w-full h-full object-contain                
  transition-transform                                                               
  duration-300 group-hover:scale-110"
-                        />
-                        <div
-                            className="absolute inset-0 bg-black bg-opacity-75     
+                            />
+                            <div
+                                className="absolute inset-0 bg-black bg-opacity-75     
  text-white p-4                                                                     
  hidden group-hover:block"
-                        >
-                            <h4 className="text-lg font-serif mb-2">
-                                Recipe Title
-                            </h4>
-                            <p className="text-sm">Description of the recipe</p>
+                            >
+                                <h4 className="text-lg font-serif mb-2">
+                                    Recipe Title
+                                </h4>
+                                <p className="text-sm">Description of the recipe</p>
+                            </div>
                         </div>
                     </motion.div>
                 ))}
