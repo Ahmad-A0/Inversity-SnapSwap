@@ -35,6 +35,8 @@ const Header = () => {
 
 // Analysis Section Component
 const AnalysisSection = ({ calories, protein, carbs, fat, swapSuggestions }) => {
+// Analysis Section Component
+const AnalysisSection = ({ calories, protein, carbs, fat, swapSuggestions }) => {
     return (
         <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -53,6 +55,19 @@ const AnalysisSection = ({ calories, protein, carbs, fat, swapSuggestions }) => 
                 <li>Fat: {fat}g</li>
             </ul>
             {swapSuggestions && swapSuggestions.length > 0 && (
+               <>
+                   <h4 className="text-xl font-serif mt-6 mb-2 text-yellow-300">
+                       Suggestions:
+                   </h4>
+                   <ul className="list-disc pl-5 text-lg mb-6 text-gray-300">
+                       {swapSuggestions.map((suggestion, index) => (
+                           <li key={index}>
+                               Swap {suggestion.original_item} for {suggestion.suggested_swap} - {suggestion.reason}
+                           </li>
+                       ))}
+                   </ul>
+               </>
+           )}
                 <>
                     <h4 className="text-xl font-serif mt-6 mb-2 text-yellow-300">
                         Suggestions:
@@ -461,6 +476,7 @@ function App() {
                         protein={protein}
                         carbs={carbs}
                         fat={fat}
+                        swapSuggestions={swapSuggestions}
                         swapSuggestions={swapSuggestions}
                     />
 
