@@ -72,8 +72,8 @@ For recipe suggestions, generate image links using the following format:
 https://image.pollinations.ai/prompt/{description}?width=512&height=512&nologo=true&seed={random_number}
 
 Where:
-- \`{description}\` is a URL-encoded description of the recipe image.
-- \`{random_number}\` is a randomly generated number for the seed parameter.
+- `{description}` is a URL-encoded description of the recipe image.
+- `{random_number}` is a randomly generated number for the seed parameter.
 
 For example:
 
@@ -196,15 +196,11 @@ Provide 6 recipe suggestions with images, titles, and descriptions.`,
 
             console.log('OpenAI API response received:', response);
 
-            const analysisResults = JSON.parse(response.data);
+            const analysisResults = response.data.choices[0].output.text;
             if (analysisResults) {
               console.log('Analysis results parsed:', analysisResults);
-              setCalories(analysisResults.estimated_calories);
-              setProtein(analysisResults.macros.protein);
-              setCarbs(analysisResults.macros.carbohydrates);
-              setFat(analysisResults.macros.fat);
-              setSwapSuggestions(analysisResults.swap_suggestions);
-              setCarouselData(analysisResults.recipe_images);
+              // Update state with analysis results
+              setCalories(analysisResults);
             } else {
               console.error('Unexpected response format from OpenAI API:', response);
             }
