@@ -6,25 +6,7 @@ import StatsBar from './components/StatsBar';
 import ImageUpload from './components/ImageUpload';
 import ImageCarousel from './components/ImageCarousel';
 import ProgressCharts from './components/ProgressCharts';
-import RecipeCarousel from './components/RecipeCarousel'; // New component
-import {
-    LineChart,
-    Line,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    Legend,
-    PieChart,
-    Pie,
-    Cell,
-    ResponsiveContainer,
-} from 'recharts';
-import placeholderImage from './images/placeholder.png';
-import HeatmapComponent from './components/Heatmap';
 import OpenAI from 'openai';
-
-
 
 const openai = new OpenAI({
     dangerouslyAllowBrowser: true,
@@ -42,11 +24,11 @@ function App() {
     const [loading, setLoading] = useState(false);
 
     const caloriesSavedData = [
-        { date: '2023-10-25', caloriesSaved: 150 },
-        { date: '2023-10-26', caloriesSaved: 200 },
-        { date: '2023-10-27', caloriesSaved: 50 },
-        { date: '2023-10-28', caloriesSaved: 180 },
-        { date: '2023-10-29', caloriesSaved: 120 },
+        { date: '2024-09-25', caloriesSaved: 150 },
+        { date: '2024-09-26', caloriesSaved: 200 },
+        { date: '2024-09-27', caloriesSaved: 50 },
+        { date: '2024-09-28', caloriesSaved: 180 },
+        { date: '2024-09-29', caloriesSaved: 120 },
     ];
 
     const macroBreakdownData = [
@@ -81,8 +63,21 @@ function App() {
                             messages: [
                                 {
                                     role: 'system',
-                                    content:
-                                        'You are a helpful AI assistant that can analyze food images and provide structured nutritional information.',
+                                    content: `You are a helpful AI assistant that can analyze food images, provide structured nutritional information, and suggest healthier recipes with AI-generated images.
+
+For recipe suggestions, generate image links using the following format:
+
+[![image](https://image.pollinations.ai/prompt/{description}?width=1024&height=1024&nologo=true&seed={random_number})](https://image.pollinations.ai/prompt/{description}?width=1024&height=1024&nologo=true&seed={random_number})
+
+Where:
+- \`{description}\` is a URL-encoded description of the recipe image.
+- \`{random_number}\` is a randomly generated number for the seed parameter.
+
+For example:
+
+[![image](https://image.pollinations.ai/prompt/healthy%20chicken%20stir-fry%20with%20brown%20rice%20close-up%20shot?width=1024&height=1024&nologo=true&seed=12345)](https://image.pollinations.ai/prompt/healthy%20chicken%20stir-fry%20with%20brown%20rice%20close-up%20shot?width=1024&height=1024&nologo=true&seed=12345)
+
+Provide 6 recipe suggestions with images, titles, and descriptions.`,
                                 },
                                 {
                                     role: 'user',
@@ -111,7 +106,20 @@ function App() {
                                             food_items: {
                                                 type: 'array',
                                                 items: {
-                                                    type: 'string',
+                                                    type: 'object',
+                                                    properties: {
+                                                        name: {
+                                                            type: 'string',
+                                                        },
+                                                        image_url: {
+                                                            type: 'string', // This will hold the image_url for the identified food item
+                                                        },
+                                                    },
+                                                    required: [
+                                                        'name',
+                                                        'image_url',
+                                                    ],
+                                                    additionalProperties: false,
                                                 },
                                             },
                                             estimated_calories: {
@@ -160,26 +168,48 @@ function App() {
                                                     additionalProperties: false,
                                                 },
                                             },
+                                            recipe_images: {
+                                                // New field for recipe images
+                                                type: 'array',
+                                                items: {
+                                                    type: 'object',
+                                                    properties: {
+                                                        title: {
+                                                            type: 'string',
+                                                        },
+                                                        description: {
+                                                            type: 'string',
+                                                        },
+                                                        image_url: {
+                                                            type: 'string',
+                                                        },
+                                                    },
+                                                    required: [
+                                                        'title',
+                                                        'description',
+                                                        'image_url',
+                                                    ],
+                                                    additionalProperties: false,
+                                                },
+                                            },
                                         },
                                         required: [
                                             'food_items',
                                             'estimated_calories',
                                             'macros',
                                             'swap_suggestions',
+                                            'recipe_images',
                                         ],
                                         additionalProperties: false,
                                     },
                                 },
                             },
-                            max_tokens: 500,
+                            max_tokens: 4096,
                         });
 
                         console.log(
                             'OpenAI API response received:',
-                            response.choices[0].message.content.substring(
-                                0,
-                                50
-                            ) + '...'
+                            response.choices[0].message.content
                         );
 
                         const analysisResults = JSON.parse(
@@ -253,8 +283,6 @@ function App() {
                         loading={loading}
                     />
                 </div>
-
-                <RecipeCarousel /> {/* New component */}
 
                 <ImageCarousel />
 
