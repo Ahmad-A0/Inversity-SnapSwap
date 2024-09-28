@@ -1,7 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 import dotenv from 'dotenv';
-import fileType from 'file-type';
+import { fileTypeFromBuffer } from 'file-type';
 import fs from 'fs';
 import OpenAI from 'openai'; // Import the OpenAI package
 
@@ -24,7 +24,7 @@ app.post('/analyze', upload.single('image'), async (req, res) => {
         const imageFile = req.file;
 
         // Validate file type
-        const fileTypeResult = await fileType.fromBuffer(imageFile.buffer);
+        const fileTypeResult = await fileTypeFromBuffer(imageFile.buffer);
         if (
             !fileTypeResult ||
             !['image/jpeg', 'image/png'].includes(fileTypeResult.mime)
