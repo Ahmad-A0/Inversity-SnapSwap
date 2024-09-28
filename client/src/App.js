@@ -39,6 +39,7 @@ const AnalysisSection = ({
     carbs,
     fat,
     swapSuggestions,
+    loading,
 }) => {
     return (
         <motion.div
@@ -50,45 +51,42 @@ const AnalysisSection = ({
             <h3 className="text-2xl font-serif mb-4 text-yellow-300">
                 Analysis & Suggestions
             </h3>
-            <p className="text-xl mb-2">Estimated Calories: {calories}</p>
-            <p className="text-xl mb-2">Macronutrients:</p>
-            <ul className="list-disc pl-5 text-lg mb-4 text-gray-300">
-                <li>Protein: {protein}g</li>
-                <li>Carbohydrates: {carbs}g</li>
-                <li>Fat: {fat}g</li>
-            </ul>
-            {swapSuggestions && swapSuggestions.length > 0 && (
+            {loading ? (
+                <div className="animate-pulse">
+                    <div className="h-4 bg-gray-700 rounded mb-2"></div>
+                    <div className="h-4 bg-gray-700 rounded mb-2"></div>
+                    <div className="h-4 bg-gray-700 rounded mb-2"></div>
+                    <div className="h-4 bg-gray-700 rounded mb-2"></div>
+                </div>
+            ) : (
                 <>
-                    <h4 className="text-xl font-serif mt-6 mb-2 text-yellow-300">
-                        Suggestions:
-                    </h4>
-                    <ul className="list-disc pl-5 text-lg mb-6 text-gray-300">
-                        {swapSuggestions.map((suggestion, index) => (
-                            <li key={index}>
-                                Swap <b>{suggestion.original_item}</b> for{' '}
-                                <u>
-                                    <b>{suggestion.suggested_swap}</b>
-                                </u>{' '}
-                                - {suggestion.reason}
-                            </li>
-                        ))}
+                    <p className="text-xl mb-2">Estimated Calories: {calories}</p>
+                    <p className="text-xl mb-2">Macronutrients:</p>
+                    <ul className="list-disc pl-5 text-lg mb-4 text-gray-300">
+                        <li>Protein: {protein}g</li>
+                        <li>Carbohydrates: {carbs}g</li>
+                        <li>Fat: {fat}g</li>
                     </ul>
+                    {swapSuggestions && swapSuggestions.length > 0 && (
+                        <>
+                            <h4 className="text-xl font-serif mt-6 mb-2 text-yellow-300">
+                                Suggestions:
+                            </h4>
+                            <ul className="list-disc pl-5 text-lg mb-6 text-gray-300">
+                                {swapSuggestions.map((suggestion, index) => (
+                                    <li key={index}>
+                                        Swap <b>{suggestion.original_item}</b> for{' '}
+                                        <u>
+                                            <b>{suggestion.suggested_swap}</b>
+                                        </u>{' '}
+                                        - {suggestion.reason}
+                                    </li>
+                                ))}
+                            </ul>
+                        </>
+                    )}
                 </>
             )}
-            {/* <h4 className="text-xl font-serif mt-6 mb-2 text-yellow-300">
-                Suggestions:
-            </h4>
-            <ul className="list-disc pl-5 text-lg mb-6 text-gray-300">
-                <li>
-                    Swap white rice for brown rice for added fiber and
-                    nutrients.
-                </li>
-                <li>
-                    Consider a smaller portion of the fried chicken for reduced
-                    fat intake.
-                </li>
-                <li>Add a side of steamed vegetables for extra vitamins.</li>
-            </ul> */}
         </motion.div>
     );
 };
