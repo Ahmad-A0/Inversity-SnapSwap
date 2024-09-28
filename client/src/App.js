@@ -18,7 +18,7 @@ import HeatmapComponent from './components/Heatmap';
 import OpenAI from 'openai';
 
 const openai = new OpenAI({
-    dangerouslyAllowBrowser: true,  
+    dangerouslyAllowBrowser: true,
     apiKey: process.env.REACT_APP_OPENAI_API_KEY, // Ensure this is set in your .env file
 });
 
@@ -33,10 +33,13 @@ const Header = () => {
     );
 };
 
-// Analysis Section Component
-const AnalysisSection = ({ calories, protein, carbs, fat, swapSuggestions }) => {
-// Analysis Section Component
-const AnalysisSection = ({ calories, protein, carbs, fat, swapSuggestions }) => {
+const AnalysisSection = ({
+    calories,
+    protein,
+    carbs,
+    fat,
+    swapSuggestions,
+}) => {
     return (
         <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -62,13 +65,17 @@ const AnalysisSection = ({ calories, protein, carbs, fat, swapSuggestions }) => 
                     <ul className="list-disc pl-5 text-lg mb-6 text-gray-300">
                         {swapSuggestions.map((suggestion, index) => (
                             <li key={index}>
-                                Swap {suggestion.original_item} for {suggestion.suggested_swap} - {suggestion.reason}
+                                Swap <b>{suggestion.original_item}</b> for{' '}
+                                <u>
+                                    <b>{suggestion.suggested_swap}</b>
+                                </u>{' '}
+                                - {suggestion.reason}
                             </li>
                         ))}
                     </ul>
                 </>
             )}
-            <h4 className="text-xl font-serif mt-6 mb-2 text-yellow-300">
+            {/* <h4 className="text-xl font-serif mt-6 mb-2 text-yellow-300">
                 Suggestions:
             </h4>
             <ul className="list-disc pl-5 text-lg mb-6 text-gray-300">
@@ -81,7 +88,7 @@ const AnalysisSection = ({ calories, protein, carbs, fat, swapSuggestions }) => 
                     fat intake.
                 </li>
                 <li>Add a side of steamed vegetables for extra vitamins.</li>
-            </ul>
+            </ul> */}
         </motion.div>
     );
 };
@@ -113,7 +120,7 @@ const ImageUpload = ({ selectedImage, handleImageChange }) => {
     };
 
     return (
-        <div className="relative bg-gray-800 p-4 rounded-xl shadow-lg overflow-hidden h-80">
+        <div className="relative bg-gray-800 p-4 pb-0 rounded-xl shadow-lg overflow-hidden h-[28rem]">
             {selectedImage ? (
                 <img
                     src={selectedImage}
@@ -294,7 +301,23 @@ function App() {
     const [protein, setProtein] = useState(null);
     const [carbs, setCarbs] = useState(null);
     const [fat, setFat] = useState(null);
-    const [swapSuggestions, setSwapSuggestions] = useState([]);
+    const [swapSuggestions, setSwapSuggestions] = useState([
+        {
+            original_item: 'white rice',
+            suggested_swap: 'brown rice',
+            reason: 'for added fiber and nutrients',
+        },
+        {
+            original_item: 'fried chicken',
+            suggested_swap: 'grilled chicken',
+            reason: 'for reduced fat intake',
+        },
+        {
+            original_item: 'fries',
+            suggested_swap: 'sweet potato fries',
+            reason: 'for added vitamins and minerals',
+        },
+    ]);
 
     const caloriesSavedData = [
         { date: '2023-10-25', caloriesSaved: 150 },
@@ -323,7 +346,10 @@ function App() {
                 if (e.target && e.target.result) {
                     const base64Image = e.target.result.split(',')[1]; // Extract the base64 part without the data URL prefix
 
-                    console.log('Image read as base64:', base64Image.substring(0, 50) + '...');
+                    console.log(
+                        'Image read as base64:',
+                        base64Image.substring(0, 50) + '...'
+                    );
 
                     try {
                         const response = await openai.chat.completions.create({
@@ -424,18 +450,34 @@ function App() {
                             max_tokens: 500,
                         });
 
-                        console.log('OpenAI API response received:', response.choices[0].message.content.substring(0, 50) + '...');
+                        console.log(
+                            'OpenAI API response received:',
+                            response.choices[0].message.content.substring(
+                                0,
+                                50
+                            ) + '...'
+                        );
 
-                        const analysisResults = JSON.parse(response.choices[0].message.content);
+                        const analysisResults = JSON.parse(
+                            response.choices[0].message.content
+                        );
                         if (analysisResults) {
-                            console.log('Analysis results parsed:', analysisResults);
+                            console.log(
+                                'Analysis results parsed:',
+                                analysisResults
+                            );
                             setCalories(analysisResults.estimated_calories);
                             setProtein(analysisResults.macros.protein);
                             setCarbs(analysisResults.macros.carbohydrates);
                             setFat(analysisResults.macros.fat);
-                            setSwapSuggestions(analysisResults.swap_suggestions);
+                            setSwapSuggestions(
+                                analysisResults.swap_suggestions
+                            );
                         } else {
-                            console.error('Unexpected response format from OpenAI API:', response);
+                            console.error(
+                                'Unexpected response format from OpenAI API:',
+                                response
+                            );
                         }
                     } catch (error) {
                         console.error('Error analyzing image:', error);
@@ -463,7 +505,6 @@ function App() {
                         protein={protein}
                         carbs={carbs}
                         fat={fat}
-                        swapSuggestions={swapSuggestions}
                         swapSuggestions={swapSuggestions}
                     />
 
