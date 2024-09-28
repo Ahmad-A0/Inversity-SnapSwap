@@ -21,6 +21,7 @@ function App() {
     const [carbs, setCarbs] = useState(null);
     const [fat, setFat] = useState(null);
     const [swapSuggestions, setSwapSuggestions] = useState([]);
+    const [carouselData, setCarouselData] = useState([]);
     const [loading, setLoading] = useState(false);
 
     const caloriesSavedData = [
@@ -227,6 +228,7 @@ Provide 6 recipe suggestions with images, titles, and descriptions.`,
                             setSwapSuggestions(
                                 analysisResults.swap_suggestions
                             );
+                            setCarouselData(analysisResults.recipe_images);
                         } else {
                             console.error(
                                 'Unexpected response format from OpenAI API:',
@@ -284,7 +286,7 @@ Provide 6 recipe suggestions with images, titles, and descriptions.`,
                     />
                 </div>
 
-                <ImageCarousel />
+                <ImageCarousel carouselData={carouselData} />
 
                 <ProgressCharts
                     caloriesSavedData={caloriesSavedData}
