@@ -403,7 +403,7 @@ function App() {
                             max_tokens: 500,
                         });
 
-                        const analysisResults = response.data;
+                        const analysisResults = JSON.parse(response.choices[0].message.content);
                         if (analysisResults) {
                             setCalories(analysisResults.estimated_calories);
                             setProtein(analysisResults.macros.protein);
