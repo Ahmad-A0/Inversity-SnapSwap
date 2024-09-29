@@ -1,8 +1,10 @@
-# SmartSwap - Your Nutrition Companion
+# SnapSwap 
+
+Submission for Inversity Burgers to Broccli NESTA Challenge
 
 ## Overview
 
-SmartSwap is a web application designed to help users analyze their meals, estimate nutritional values, and suggest healthier alternatives. The app leverages AI to provide detailed insights and recommendations based on uploaded images of meals.
+SnapSwap is a prototype web application designed to help users analyze their meals, estimate nutritional values, and suggest healthier alternatives. The app leverages AI to provide detailed insights and recommendations based on uploaded images of meals.
 
 ## Features
 
@@ -43,7 +45,6 @@ SmartSwap is a web application designed to help users analyze their meals, estim
    Create a `.env` file in the root directory and add your API keys:
    ```sh
    REACT_APP_OPENAI_API_KEY=your_openai_api_key
-   REACT_APP_GROQ_API_KEY=your_groq_api_key
    ```
 
 ### Running the App
@@ -74,50 +75,6 @@ SmartSwap is a web application designed to help users analyze their meals, estim
    npm test
    ```
 
-### Deployment
-
-1. **Deploy the app to a hosting service:**
-   - You can use services like Vercel, Netlify, or GitHub Pages to deploy your app.
-
-## Contributing
-
-1. **Fork the repository:**
-   - Click the "Fork" button on the top right of the repository page.
-
-2. **Clone your fork:**
-   ```sh
-   git clone https://github.com/your-username/smartswap.git
-   cd smartswap
-   ```
-
-3. **Create a new branch:**
-   ```sh
-   git checkout -b feature/your-feature
-   ```
-
-4. **Make your changes:**
-   - Commit your changes and push to your fork.
-
-5. **Create a pull request:**
-   - Go to the original repository and click "New pull request" to submit your changes.
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-For any questions or feedback, please contact [your-email@example.com](mailto:your-email@example.com).
-
-## Acknowledgments
-
-- [Create React App](https://github.com/facebook/create-react-app)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [Recharts](https://recharts.org/)
-- [OpenAI](https://openai.com/)
-- [React Calendar Heatmap](https://github.com/gene1wood/react-calendar-heatmap)
-
----
-
-Thank you for using SmartSwap! We hope it helps you make healthier choices and achieve your nutrition goals.
