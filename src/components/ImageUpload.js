@@ -42,7 +42,7 @@ overflow-hidden h-[40rem]" role="region" aria-label="Image Upload Section">
                 </div>
             ) : (                                                                  
                 <div className="absolute inset-0 flex items-center justify-center  
-bg-gray-700">                                                                      
+bg-gray-700" aria-label="Upload Image Section">                                                                      
                     <input                                                         
                         type="file"                                                
                         accept="image/*"                                           
