@@ -256,20 +256,22 @@ Provide 6 recipe suggestions with images, titles, and descriptions.`,
     };
 
     return (
-        <div className="min-h-screen font-sans text-gray-100 bg-gray-900">
+        <div className="min-h-screen font-sans text-gray-100 bg-gray-900" role="application" aria-label="Main Application Container">
             <Header />
 
-            <main className="container mx-auto px-4 py-8" role="main">
-                <h2 className="text-5xl font-sans font-bold mb-12 mt-5 text-center text-purple-500">
+            <main className="container mx-auto px-4 py-8" role="main" aria-label="Main Content">
+                <h2 className="text-5xl font-sans font-bold mb-12 mt-5 text-center text-purple-500" role="heading" aria-level="2">
                     Turn your meals into healthier realities
                 </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8" role="region" aria-label="Main Content Grid">
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="col-span-2"
+                        role="region"
+                        aria-label="Stats and Image Upload Section"
                     >
                         <StatsBar
                             calories={calories}
