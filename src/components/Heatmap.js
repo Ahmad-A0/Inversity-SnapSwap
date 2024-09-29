@@ -6,7 +6,7 @@ const HeatmapComponent = ({ data }) => {
     return (
         <div className="heatmap-container" role="region" aria-label="Daily Swaps Heatmap">
             <h3 className="heatmap-title text-center text-lg">Daily Swaps</h3>
-            <div className="heatmap">
+            <div className="heatmap" role="presentation">
                 <CalendarHeatmap
                     startDate={new Date('2024-01-01')}
                     endDate={new Date('2025-01-01')}
@@ -21,6 +21,7 @@ const HeatmapComponent = ({ data }) => {
                         }
                         return `${value.date}: ${value.count} swaps`;
                     }}
+                    aria-label="Daily Swaps Heatmap"
                 />
             </div>
         </div>

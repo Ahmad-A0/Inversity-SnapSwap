@@ -38,7 +38,7 @@ const ProgressCharts = ({ caloriesSavedData, macroBreakdownData, colors }) => {
                 Your Progress
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="bg-gray-800 p-6 rounded-xl shadow-lg">
+                <div className="bg-gray-800 p-6 rounded-xl shadow-lg" role="region" aria-label="Calories Saved Chart">
                     <h4 className="text-xl font-serif text-yellow-300 mb-4">
                         Calories Saved
                     </h4>
@@ -76,7 +76,7 @@ const ProgressCharts = ({ caloriesSavedData, macroBreakdownData, colors }) => {
                     </ResponsiveContainer>
                 </div>
 
-                <div className="bg-gray-800 p-6 rounded-xl shadow-lg">
+                <div className="bg-gray-800 p-6 rounded-xl shadow-lg" role="region" aria-label="Macronutrient Breakdown Chart">
                     <h4 className="text-xl font-serif text-yellow-300 mb-4">
                         Macronutrient Breakdown
                     </h4>
