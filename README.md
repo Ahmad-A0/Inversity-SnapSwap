@@ -1,4 +1,4 @@
-# SnapSwap 
+# SnapSwap 🔁
 
 Submission for Inversity Burgers to Broccli NESTA Challenge
 
@@ -74,7 +74,3 @@ SnapSwap is a prototype web application designed to help users analyze their mea
    ```sh
    npm test
    ```
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
